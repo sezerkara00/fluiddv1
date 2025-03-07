@@ -10,6 +10,7 @@ export default class ToolheadMixin extends Vue {
 
   get hasMultipleExtruders (): boolean {
     return this.$store.getters['printer/getHasMultipleExtruders']
+
   }
 
   get activeExtruder (): Extruder | undefined {

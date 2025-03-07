@@ -9,6 +9,7 @@ import { Globals } from '@/globals'
 import isKeyOf from '@/util/is-key-of'
 import getFilePaths from '@/util/get-file-paths'
 import type { AppFileWithMeta } from '../files/types'
+import consola from 'consola'
 
 export const getters: GetterTree<PrinterState, RootState> = {
 

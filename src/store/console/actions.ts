@@ -43,7 +43,9 @@ export const actions: ActionTree<ConsoleState, RootState> = {
    * Add a console entry
    */
   async onAddConsoleEntry ({ commit, dispatch }, payload: ConsoleEntry) {
+
     payload.message = DOMPurify.sanitize(payload.message).replace(/\r\n|\r|\n/g, '<br />')
+
     if (!payload.time || payload.time <= 0) {
       payload.time = Date.now() / 1000 | 0
     }

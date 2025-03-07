@@ -456,6 +456,7 @@ export const SocketActions = {
   },
 
   async serverTemperatureStore () {
+    
     baseEmit(
       'server.temperature_store', {
         dispatch: 'charts/initTempStore',

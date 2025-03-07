@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-subheader id="versions">
-      {{ $t('app.version.title') }}
+      {{ $t('app.version.titlsse') }}
       <!-- <v-icon small color="info" class="ml-2" v-if="hasUpdates">$warning</v-icon> -->
     </v-subheader>
-    <v-card
+    <!-- <v-card
       :elevation="5"
       dense
       class="mb-4"
@@ -163,7 +163,7 @@
           :key="`component-${component.key}-${component.name}-_divider`"
         />
       </template>
-    </v-card>
+    </v-card> -->
 
     <version-commit-history-dialog
       v-if="informationDialogState.open"

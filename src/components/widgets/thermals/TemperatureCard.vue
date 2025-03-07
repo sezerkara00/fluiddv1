@@ -167,7 +167,7 @@ export default class TemperatureCard extends Mixins(StateMixin, BrowserMixin) {
 
   set showRateOfChange (value: boolean) {
     this.$store.dispatch('config/saveByPath', {
-      path: 'uiSettings.general.showRateOfChange',
+      path: 'uiSettings.general.showRateOwfChange',
       value,
       server: true
     })

@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <v-subheader>{{ $t('app.general.label.printers') }}</v-subheader>
+    <v-subheader>{{ $t('app.general.label.printesssrs') }}</v-subheader>
 
     <template v-for="(instance, index) in instances">
       <v-list-item

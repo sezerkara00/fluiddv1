@@ -15,7 +15,7 @@
         <console-settings />
         <file-browser-settings />
         <file-editor-settings />
-        <macro-settings />
+        <!-- <macro-settings /> -->
         <camera-settings />
         <toolhead-settings />
         <preset-settings />
@@ -32,7 +32,7 @@
 import { Component, Mixins } from 'vue-property-decorator'
 import StateMixin from '@/mixins/state'
 
-import MacroSettings from '@/components/settings/macros/MacroSettings.vue'
+// import MacroSettings from '@/components/settings/macros/MacroSettings.vue'
 import GeneralSettings from '@/components/settings/GeneralSettings.vue'
 import PresetSettings from '@/components/settings/presets/PresetSettings.vue'
 import CameraSettings from '@/components/settings/cameras/CameraSettings.vue'
@@ -51,7 +51,7 @@ import SpoolmanSettings from '@/components/settings/SpoolmanSettings.vue'
   components: {
     SpoolmanSettings,
     TimelapseSettings,
-    MacroSettings,
+    // MacroSettings,
     GeneralSettings,
     PresetSettings,
     CameraSettings,

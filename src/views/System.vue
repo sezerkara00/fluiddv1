@@ -23,6 +23,12 @@
         />
       </template>
     </v-col>
+    <v-col
+      cols="12"
+      md="6"
+    >
+      <PrinterSezerCard />
+    </v-col>
   </v-row>
 </template>
 
@@ -36,14 +42,15 @@ import McuCard from '@/components/widgets/system/McuCard.vue'
 import SystemUsageCard from '@/components/widgets/system/SystemUsageCard.vue'
 import DiskUsageCard from '@/components/widgets/system/DiskUsageCard.vue'
 import type { MCU } from '@/store/printer/types'
-
+import PrinterSezerCard from '@/components/widgets/deneme/PrintersezerCard.vue'
 @Component({
   components: {
     FileSystem,
     SystemOverviewCard,
     McuCard,
     SystemUsageCard,
-    DiskUsageCard
+    DiskUsageCard,
+    PrinterSezerCard
   }
 })
 export default class Configure extends Mixins(StateMixin) {

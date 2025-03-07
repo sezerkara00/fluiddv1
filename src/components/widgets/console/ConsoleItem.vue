@@ -30,8 +30,11 @@ export default class ConsoleItem extends Vue {
 
   get itemMessage () {
     let message = this.value.message
+
     if (this.value.type === 'response') {
+      
       message = this.value.message.replace(/([A-Z_][A-Z0-9_.]+)/g, (match, command) => {
+
         if (command in this.knownCommands) return `<a class="primary--text text--lighten-1">${command.toUpperCase()}</a>`
         return match
       })

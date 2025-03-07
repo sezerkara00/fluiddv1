@@ -43,14 +43,14 @@
 import { Component, Mixins, Watch } from 'vue-property-decorator'
 import StateMixin from '@/mixins/state'
 import PrinterStatusCard from '@/components/widgets/status/PrinterStatusCard.vue'
-import JobsCard from '@/components/widgets/jobs/JobsCard.vue'
+// import JobsCard from '@/components/widgets/jobs/JobsCard.vue'
 import ToolheadCard from '@/components/widgets/toolhead/ToolheadCard.vue'
 import TemperatureCard from '@/components/widgets/thermals/TemperatureCard.vue'
 import CameraCard from '@/components/widgets/camera/CameraCard.vue'
-import MacrosCard from '@/components/widgets/macros/MacrosCard.vue'
-import ConsoleCard from '@/components/widgets/console/ConsoleCard.vue'
+// import MacrosCard from '@/components/widgets/macros/MacrosCard.vue'
+// import ConsoleCard from '@/components/widgets/console/ConsoleCard.vue'
 import OutputsCard from '@/components/widgets/outputs/OutputsCard.vue'
-import PrinterLimitsCard from '@/components/widgets/limits/PrinterLimitsCard.vue'
+// import PrinterLimitsCard from '@/components/widgets/limits/PrinterLimitsCard.vue'
 import RetractCard from '@/components/widgets/retract/RetractCard.vue'
 import type { LayoutConfig, LayoutContainer } from '@/store/layout/types'
 import BedMeshCard from '@/components/widgets/bedmesh/BedMeshCard.vue'
@@ -61,18 +61,21 @@ import SensorsCard from '@/components/widgets/sensors/SensorsCard.vue'
 import RunoutSensorsCard from '@/components/widgets/runout-sensors/RunoutSensorsCard.vue'
 import BeaconCard from '@/components/widgets/beacon/BeaconCard.vue'
 import type { KlipperPrinterSettings } from '@/store/printer/types'
-
+// import PrinterSezerCard from '@/components/widgets/deneme/PrintersezerCard.vue'
+import PrinterLimitCard from '@/components/widgets/denemee/PrinterLimitCard.vue'
 @Component({
   components: {
     PrinterStatusCard,
-    JobsCard,
+    // JobsCard,
     ToolheadCard,
-    MacrosCard,
+    // MacrosCard,
     TemperatureCard,
     CameraCard,
-    PrinterLimitsCard,
+    PrinterLimitCard,
+    // PrinterLimitsCard,
+    // PrinterSezerCard,
     RetractCard,
-    ConsoleCard,
+    // ConsoleCard,
     OutputsCard,
     BedMeshCard,
     GcodePreviewCard,
@@ -80,7 +83,7 @@ import type { KlipperPrinterSettings } from '@/store/printer/types'
     SpoolmanCard,
     SensorsCard,
     RunoutSensorsCard,
-    BeaconCard
+    BeaconCard,
   }
 })
 export default class Dashboard extends Mixins(StateMixin) {
@@ -164,6 +167,10 @@ export default class Dashboard extends Mixins(StateMixin) {
     return this.$store.getters['macros/getVisibleMacros'].length > 0
   }
 
+  get hasSezer (): boolean {
+    return this.$store.getters['printer/getHeaters'].length > 0
+  }
+
   get hasOutputs (): boolean {
     return (
       this.$store.getters['printer/getAllFans'].length > 0 ||
@@ -233,6 +240,7 @@ export default class Dashboard extends Mixins(StateMixin) {
     if (item.id === 'job-queue-card' && !this.supportsJobQueue) return true
     if (item.id === 'retract-card' && !this.firmwareRetractionEnabled) return true
     if (item.id === 'bed-mesh-card' && !this.supportsBedMesh) return true
+    if (item.id === 'printer-sezer-card' && !this.hasHeatersOrTemperatureSensors) return true
     if (item.id === 'beacon-card' && !this.supportsBeacon) return true
     if (item.id === 'runout-sensors-card' && !this.supportsRunoutSensors) return true
     if (item.id === 'spoolman-card' && !this.supportsSpoolman) return true

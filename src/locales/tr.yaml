@@ -483,6 +483,7 @@ app:
       jobs: İşler
       job_queue: İş Kuyruğu
       limits: Yazıcı Sınırları
+      limit: Yazıcı Sınırı
       macros: Makrolar
       metrics_explorer: Metrik Gezgini
       not_found: 404 Bulunamadı
@@ -496,6 +497,7 @@ app:
       system: Sistem
       system_overview: Sistem Bilgileri
       temperature: Sıcaklık
+      temperatures: Sicakliklar
       timelapse: Zaman Atlama
       tool: Araç
       tune: Ayarla
@@ -798,6 +800,7 @@ app:
       connected: Bağlandı
       disconnected: Bağlantı kesildi
       non_critical_connection: Kritik olmayan bağlantı
+      show_details: Ayrıntıları Görüntüle
     msg:
       canbus_warning: >-
         Sadece atanmamış CAN bus düğümleri algılanabilir.<br>

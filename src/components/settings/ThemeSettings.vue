@@ -10,7 +10,7 @@
     >
       <app-setting>
         <template #title>
-          <span>{{ $t('app.setting.label.theme_preset') }}</span>
+          <span>{{ $t('app.setting.label.theme_presesst') }}</span>
           <app-inline-help
             bottom
             small

@@ -25,6 +25,7 @@ export interface UiSettings {
 }
 
 export interface ToolheadConfig {
+
   extrudeSpeed: number;
   extrudeLength: number;
 }

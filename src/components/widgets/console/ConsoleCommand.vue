@@ -93,6 +93,8 @@ export default class ConsoleCommand extends Vue {
       this.history = [...this.originalHistory]
       this.isFirst = true
       this.$emit('send', val)
+
+      console.log(`kom gonderildi ${val}`)
     }
   }
 

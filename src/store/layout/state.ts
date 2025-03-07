@@ -23,6 +23,7 @@ export const defaultState = (): LayoutState => {
           { id: 'runout-sensors-card', enabled: false, collapsed: false },
           { id: 'printer-limits-card', enabled: true, collapsed: false },
           { id: 'retract-card', enabled: true, collapsed: false }
+
         ],
         container2: [
           { id: 'temperature-card', enabled: true, collapsed: false },
@@ -32,7 +33,9 @@ export const defaultState = (): LayoutState => {
           { id: 'job-queue-card', enabled: false, collapsed: false },
           { id: 'gcode-preview-card', enabled: true, collapsed: false },
           { id: 'bed-mesh-card', enabled: false, collapsed: false },
-          { id: 'beacon-card', enabled: false, collapsed: false }
+          { id: 'beacon-card', enabled: false, collapsed: false },
+          { id: 'printer-limit-card', enabled: true, collapsed: false },
+          { id: 'printer-sezer-card', enabled: true, collapsed: false }
         ]
       },
       diagnostics: {

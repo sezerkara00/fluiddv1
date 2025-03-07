@@ -99,7 +99,7 @@ export default class AppWarnings extends Mixins(StateMixin) {
   }
 
   get appName () {
-    return Globals.APP_NAME
+    return 'Layerstec/M1pro'
   }
 
   get printerWarnings (): string[] {

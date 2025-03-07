@@ -38,35 +38,34 @@
           >
             {{ $t('app.general.title.home') }}
           </app-nav-item>
-
-          <app-nav-item
-            icon="$console"
-            to="console"
-          >
-            {{ $t('app.general.title.console') }}
-          </app-nav-item>
-
           <app-nav-item
             icon="$cubeScan"
             to="gcode_preview"
           >
             {{ $t('app.general.title.gcode_preview') }}
           </app-nav-item>
-
+          <!--
           <app-nav-item
+            icon="$console"
+            to="console"
+          >
+            {{ $t('app.general.title.console') }}
+          </app-nav-item> -->
+
+          <!-- <app-nav-item
             icon="$files"
             to="jobs"
           >
             {{ $t('app.general.title.jobs') }}
-          </app-nav-item>
+          </app-nav-item> -->
 
-          <app-nav-item
+          <!-- <app-nav-item
             v-if="supportsHistory"
             icon="$history"
             to="history"
           >
             {{ $t('app.general.title.history') }}
-          </app-nav-item>
+          </app-nav-item> -->
 
           <app-nav-item
             v-if="supportsTimelapse"
@@ -90,27 +89,26 @@
           >
             {{ $t('app.general.title.diagnostics') }}
           </app-nav-item>
-
-          <app-nav-item
-            icon="$codeJson"
-            to="configure"
-          >
-            {{ $t('app.general.title.configure') }}
-          </app-nav-item>
-
-          <app-nav-item
-            icon="$desktopTower"
-            to="system"
-          >
-            {{ $t('app.general.title.system') }}
-          </app-nav-item>
-
           <app-nav-item
             icon="$cog"
             to="settings"
           >
             {{ $t('app.general.title.settings') }}
           </app-nav-item>
+
+          <!-- <app-nav-item
+            icon="$codeJson"
+            to="configure"
+          >
+            {{ $t('app.general.title.configure') }}
+          </app-nav-item> -->
+          <!--
+          <app-nav-item
+            icon="$desktopTower"
+            to="system"
+          >
+            {{ $t('app.general.title.system') }}
+          </app-nav-item> -->
         </div>
 
         <template

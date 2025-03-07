@@ -1,0 +1,11 @@
+mixins toolhead
+  get hasExtruder (): boolean {
+    return this.$store.getters['printer/getHasExtruder']
+  }
+
+
+  getHasExtruder: (state) => {
+    return state.printer.extruder != null
+  },
+
+

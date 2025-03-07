@@ -72,7 +72,7 @@
             </span>
           </td>
           <td class="temp-actual">
-            {{ (item.temperature) ? item.temperature.toFixed(1) : 0 }}<small>°C</small>
+            {{ (item.temperature) ? item.temperature.toFixed(1) : 0 }}<small>°</small>
           </td>
           <td>/</td>
           <td @contextmenu.stop>

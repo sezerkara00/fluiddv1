@@ -60,6 +60,7 @@ import ExtruderSteppers from './ExtruderSteppers.vue'
 import ToolChangeCommands from './ToolChangeCommands.vue'
 import type { ToolheadControlStyle } from '@/store/config/types'
 
+
 @Component({
   components: {
     ToolheadControlCross,
@@ -73,7 +74,11 @@ import type { ToolheadControlStyle } from '@/store/config/types'
     PressureAdvanceAdjust,
     ExtruderStats,
     ExtruderSteppers,
-    ToolChangeCommands
+    ToolChangeCommands,
+
+
+
+
   }
 })
 export default class Toolhead extends Mixins(StateMixin, ToolheadMixin) {

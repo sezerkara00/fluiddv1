@@ -40,7 +40,7 @@ export default class AppSettingsNav extends Vue {
       { name: this.$t('app.setting.title.console'), hash: '#console', visible: true },
       { name: this.$t('app.setting.title.file_browser'), hash: '#browser', visible: true },
       { name: this.$t('app.setting.title.file_editor'), hash: '#editor', visible: true },
-      { name: this.$t('app.setting.title.macros'), hash: '#macros', visible: true },
+      // { name: this.$t('app.setting.title.macros'), hash: '#macros', visible: true },
       { name: this.$tc('app.setting.title.camera', 2), hash: '#camera', visible: true },
       { name: this.$t('app.setting.title.tool'), hash: '#toolhead', visible: true },
       { name: this.$t('app.setting.title.thermal_presets'), hash: '#presets', visible: true },

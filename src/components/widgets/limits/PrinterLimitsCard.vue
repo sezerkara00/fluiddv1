@@ -12,10 +12,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import PrinterLimits from '@/components/widgets/limits/PrinterLimits.vue'
-
 @Component({
   components: {
     PrinterLimits
+
   }
 })
 export default class PrinterLimitsCard extends Vue {

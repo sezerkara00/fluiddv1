@@ -21,7 +21,7 @@
         text
         @click="$emit('navdrawer')"
       >
-        <v-icon>$menuAlt</v-icon>
+        <v-icon>$men  uAlt</v-icon>
       </app-btn>
 
       <v-toolbar-title class="printer-title text--secondary">
@@ -55,7 +55,7 @@
               @click="emergencyStop()"
             >
               <v-icon color="error">
-                $estop
+                $estopss
               </v-icon>
             </app-btn>
           </template>
@@ -69,12 +69,12 @@
         </v-tooltip>
       </div>
 
-      <div v-if="socketConnected && authenticated && showUploadAndPrint">
+      <!-- <div v-if="socketConnected && authenticated && showUploadAndPrint">
         <app-upload-and-print-btn
           :disabled="printerPrinting || printerPaused || !klippyReady"
           @upload="handleUploadAndPrint"
         />
-      </div>
+      </div> -->
 
       <div v-if="socketConnected && authenticated && topNavPowerToggle">
         <v-tooltip bottom>
@@ -104,13 +104,13 @@
         <app-user-menu @change-password="userPasswordDialogOpen = true" />
       </div>
 
-      <app-btn
+      <!-- <app-btn
         icon
         text
         @click="$emit('toolsdrawer')"
       >
         <v-icon>$menu</v-icon>
-      </app-btn>
+      </app-btn> -->
     </div>
 
     <template

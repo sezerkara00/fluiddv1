@@ -171,7 +171,7 @@ const mdiFileDocumentLock = 'm 12,21.7 v -3.5 c 0,-0.1 0,-0.1 0,-0.2 H 6 v -2 h 
  * Global, static constants.
  */
 export const Globals = Object.freeze({
-  APP_NAME: 'fluidd',
+  APP_NAME: 'C2P',
   HEADER_HEIGHT: 56,
   DEFAULTS: {
     CAMERA_URL_STREAM: '/webcam/?action=stream',

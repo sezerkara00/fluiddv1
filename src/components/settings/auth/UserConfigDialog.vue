@@ -8,6 +8,7 @@
   >
     <v-card-text class="pa-0">
       <app-setting :title="$t('app.general.label.name')">
+        <!-- namse -->
         <v-text-field
           v-model="user.username"
           autocomplete="username"

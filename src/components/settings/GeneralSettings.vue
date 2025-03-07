@@ -8,7 +8,7 @@
       dense
       class="mb-4"
     >
-      <app-setting :title="$t('app.setting.label.printer_name')">
+      <app-setting :title="$t('app.setting.label.prsinter_name')">
         <v-text-field
           ref="instanceName"
           filled
@@ -20,7 +20,7 @@
           ]"
           :value="instanceName"
           :default-value="$globals.APP_NAME"
-          @change="setInstanceName"
+          @change="setInstanceName('C2P')"
         />
       </app-setting>
 

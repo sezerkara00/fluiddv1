@@ -3,15 +3,15 @@ import VueRouter, { type RouteConfig } from 'vue-router'
 
 // Views
 import Dashboard from '@/views/Dashboard.vue'
-import Console from '@/views/Console.vue'
+// import Console from '@/views/Console.vue'
 import GcodePreview from '@/views/GcodePreview.vue'
-import Jobs from '@/views/Jobs.vue'
+// import Jobs from '@/views/Jobs.vue'
 import Tune from '@/views/Tune.vue'
 import Diagnostics from '@/views/Diagnostics.vue'
-import History from '@/views/History.vue'
+// import History from '@/views/History.vue'
 import Timelapse from '@/views/Timelapse.vue'
-import Configure from '@/views/Configure.vue'
-import System from '@/views/System.vue'
+// import Configure from '@/views/Configure.vue'
+// import System from '@/views/System.vue'
 import Settings from '@/views/Settings.vue'
 import AppSettingsNav from '@/components/layout/AppSettingsNav.vue'
 import MacroCategorySettings from '@/components/settings/macros/MacroCategorySettings.vue'
@@ -51,18 +51,18 @@ const routes: Array<RouteConfig> = [
       dashboard: true
     }
   },
-  {
-    path: '/console',
-    name: 'console',
-    component: Console,
-    ...defaultRouteConfig
-  },
-  {
-    path: '/jobs',
-    name: 'jobs',
-    component: Jobs,
-    ...defaultRouteConfig
-  },
+  // {
+  //   path: '/console',
+  //   name: 'console',
+  //   component: Console,
+  //   ...defaultRouteConfig
+  // },
+  // {
+  //   path: '/jobs',
+  //   name: 'jobs',
+  //   component: Jobs,
+  //   ...defaultRouteConfig
+  // },
   {
     path: '/tune',
     name: 'tune',
@@ -88,25 +88,25 @@ const routes: Array<RouteConfig> = [
       fileDropRoot: 'timelapse'
     }
   },
-  {
-    path: '/history',
-    name: 'history',
-    component: History,
-    ...defaultRouteConfig
-  },
-  {
-    path: '/system',
-    name: 'system',
-    component: System,
-    ...defaultRouteConfig
-  },
-  {
-    path: '/configure',
-    name: 'configure',
-    component: Configure,
-    ...defaultRouteConfig,
-    meta: {}
-  },
+  // {
+  //   path: '/history',
+  //   name: 'history',
+  //   component: History,
+  //   ...defaultRouteConfig
+  // },
+  // {
+  //   path: '/system',
+  //   name: 'system',
+  //   component: System,
+  //   ...defaultRouteConfig
+  // },
+  // {
+  //   path: '/configure',
+  //   name: 'configure',
+  //   component: Configure,
+  //   ...defaultRouteConfig,
+  //   meta: {}
+  // },
   {
     path: '/settings',
     name: 'settings',

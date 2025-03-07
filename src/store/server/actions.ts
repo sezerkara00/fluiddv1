@@ -210,7 +210,7 @@ export const actions: ActionTree<ServerState, RootState> = {
             ) {
               n = {
                 ...n,
-                suffix: `${state.cpu_temp.toFixed(0)}<small>°C</small>`,
+                suffix: `${state.cpu_temp.toFixed(0)}<small>°c</small>`,
                 suffixIcon: '$tempError'
               }
             }

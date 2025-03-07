@@ -469,12 +469,13 @@ app:
       edit_chart: Edit Chart
       endstops: Endstops
       fans_outputs: Fans & Outputs
-      gcode_preview: Gcode Preview
+      gcode_preview: Gcodeview
       history: History
       home: Home
       jobs: Jobs
       job_queue: Job Queue
       limits: Printer Limits
+      limit: Printer Limit
       login: Login
       macros: Macros
       metrics_explorer: Metrics Explorer
@@ -490,6 +491,7 @@ app:
       system: System
       system_overview: System Information
       temperature: Thermals
+      temperatures: Temperatures
       timelapse: Timelapse
       tool: Tool
       tune: Tune
@@ -767,6 +769,7 @@ app:
       operating_system: Operating System
       version: Version
       virtualization: Virtualization
+      show_details: Show Details
     msg:
       canbus_warning: >-
         Only unassigned CAN bus nodes can be detected.<br>

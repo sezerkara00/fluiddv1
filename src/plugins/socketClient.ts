@@ -27,11 +27,20 @@ export class WebSocketClient {
   store: Store<RootState>
   pingTimeout: any
   cache: CachedParams | null = null
+  sezer: number = 0
 
   constructor (options: SocketPluginOptions) {
     this.reconnectEnabled = options.reconnectEnabled || false
     this.reconnectInterval = options.reconnectInterval || 1000
     this.store = options.store
+  }
+
+  getSezer (): number {
+    return this.sezer
+  }
+
+  updateSezer (value: number) {
+    this.sezer = value
   }
 
   pong () {
@@ -188,6 +197,8 @@ export class WebSocketClient {
             if (timestamp - this.cache.timestamp >= 1000) {
               this.store.dispatch('socket/notifyStatusUpdate', this.cache.params)
               this.cache = { timestamp, params: {} }
+              // console.log(this.cache.params)
+              this.updateSezer(this.getSezer() + 1)
             }
           }
         } else {

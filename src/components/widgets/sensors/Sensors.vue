@@ -35,6 +35,7 @@ export default class Sensors extends Vue {
       return '--'
     }
 
+    
     const parameterUnits = sensor.parameter_info?.find(x => x.name === key)?.units
     const units = parameterUnits
       ? ` ${parameterUnits}`

@@ -38,6 +38,7 @@
             $plus
           </v-icon>
           {{ $t('app.setting.btn.add_user') }}
+          <!-- usser -->
         </app-btn>
       </app-setting>
 
@@ -49,7 +50,7 @@
         <app-setting
           :key="`user-${user.username}`"
           :sub-title="
-            user.username === currentUser ? $t('app.general.label.current_user') :
+            user.username === currentUser ? $t('app.general.label.currsent_user') :
             user.source !== 'moonraker' ? $t('app.general.label.user_managed_source', { source: $t(`app.general.label.${user.source}`) }) :
             undefined
           "
@@ -147,22 +148,37 @@ export default class AuthSettings extends Vue {
     this.apiKeyDialogState.open = true
   }
 
-  async handleRemoveUser (user: AppUser) {
+  async handleRemoveUser(user: AppUser) {
+  try {
     const result = await this.$confirm(
       this.$t('app.general.simple_form.msg.confirm_remove_user', { username: user.username }).toString(),
       { title: this.$tc('app.general.label.confirm'), color: 'card-heading', icon: '$error' }
-    )
+    );
 
     if (result) {
-      this.$store.dispatch('auth/removeUser', user)
+      await this.$store.dispatch('auth/removeUser', user);
+      console.log('Silinen kullanıcı:', user); // Konsola silinen kullanıcıyı yazdır
     }
+  } catch (error) {
+    console.error('Kullanıcı silinirken hata oluştu:', error);
   }
+}
 
-  async handleSaveUser (user: AppUser) {
-    await this.$store.dispatch('auth/addUser', user)
 
-    // We only want to check trust if this is the first user being added.
-    if (this.users.length === 0) this.$store.dispatch('auth/checkTrust')
+  async handleSaveUser(user: AppUser) {
+  try {
+    await this.$store.dispatch('auth/addUser', user);
+    
+    console.log('Yeni eklenen kullanıcı:', user); // Kullanıcıyı konsola yazdır
+
+    // Eğer eklenen ilk kullanıcıysa, güven kontrolü yap
+    if (this.users.length === 0) {
+      await this.$store.dispatch('auth/checkTrust');
+    }
+  } catch (error) {
+    console.error('Kullanıcı eklenirken hata oluştu:', error);
   }
+}
+
 }
 </script>

@@ -16,7 +16,6 @@ export const getters: GetterTree<ConsoleState, RootState> = {
       (!hideTempWaits || !_tempWaitExpr.test(entry.message)) &&
       (!state.consoleFilters.some((f, i) => f.enabled && state.consoleFiltersRegexp[i].test(entry.message)))
     })
-
     return items
   },
 
