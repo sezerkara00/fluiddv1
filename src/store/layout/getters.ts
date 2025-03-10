@@ -69,7 +69,7 @@ export const getters: GetterTree<LayoutState, RootState> = {
   getSpecificLayoutName: (state, getters, rootState): string => {
     const user: AppUser | null = rootState.auth.currentUser
 
-    if (!user) return 'dashboard'
+    if (!user || user.username === '_TRUSTED_USER_') return 'login'
 
     const size = vuetify.framework.breakpoint.name
     return `dashboard-${size}-${user.username}`
