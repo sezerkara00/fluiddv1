@@ -27,9 +27,17 @@ const isAuthenticated = (): boolean => (
   !router.app.$store.state.socket.apiConnected
 )
 
+const isTrustedUser = (): boolean => {
+  const currentUser = router.app.$store.state.auth.currentUser
+  if (currentUser?.username === '_TRUSTED_USER_') {
+    return true
+  }
+  return false
+}
+
 const defaultRouteConfig: Partial<RouteConfig> = {
   beforeEnter: (to, from, next) => {
-    if (isAuthenticated()) {
+    if (isAuthenticated() && !isTrustedUser()) {
       next()
     } else {
       next({ name: 'login' })
@@ -50,6 +58,16 @@ const routes: Array<RouteConfig> = [
       ...defaultRouteConfig.meta,
       dashboard: true
     }
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: Dashboard,
+    ...defaultRouteConfig,
+    meta: {
+      ...defaultRouteConfig.meta,
+      dashboard: true
+    },
   },
   // {
   //   path: '/console',
@@ -147,17 +165,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/login',
     name: 'login',
-    component: Login,
-    beforeEnter: (to, from, next) => {
-      if (isAuthenticated()) {
-        next({ name: 'home' })
-      } else {
-        next()
-      }
-    },
-    meta: {
-      fillHeight: true
-    }
+    component: Login
   },
   {
     path: '/icons',
