@@ -29,6 +29,7 @@
           outlined
           small
           color="primary"
+          class="mr-2"
           @click="handleAddUserDialog"
         >
           <v-icon
@@ -38,7 +39,37 @@
             $plus
           </v-icon>
           {{ $t('app.setting.btn.add_user') }}
-          <!-- usser -->
+        </app-btn>
+
+        <app-btn
+          outlined
+          small
+          color="primary"
+          class="mr-2"
+          @click="logCurrentUser"
+        >
+          <v-icon
+            small
+            left
+          >
+            $account
+          </v-icon>
+          Mevcut Kullanıcı
+        </app-btn>
+
+        <app-btn
+          outlined
+          small
+          color="primary"
+          @click="logAllUsers"
+        >
+          <v-icon
+            small
+            left
+          >
+            $console
+          </v-icon>
+          Kullanıcıları Yazdır
         </app-btn>
       </app-setting>
 
@@ -50,7 +81,7 @@
         <app-setting
           :key="`user-${user.username}`"
           :sub-title="
-            user.username === currentUser ? $t('app.general.label.currsent_user') :
+            user.username === currentUser ? $t('app.general.label.current_user') :
             user.source !== 'moonraker' ? $t('app.general.label.user_managed_source', { source: $t(`app.general.label.${user.source}`) }) :
             undefined
           "
@@ -67,6 +98,17 @@
           >
             <v-icon dense>
               $delete
+            </v-icon>
+          </app-btn>
+
+          <app-btn
+            v-if="user.username !== currentUser"
+            icon
+            color="success"
+            @click.stop="switchToUser(user)"
+          >
+            <v-icon dense>
+              $check
             </v-icon>
           </app-btn>
         </app-setting>
@@ -88,6 +130,13 @@
         v-if="apiKeyDialogState.open"
         v-model="apiKeyDialogState.open"
       />
+
+      <user-login-dialog
+        v-if="loginDialogState.open"
+        v-model="loginDialogState.open"
+        :username="loginDialogState.username"
+        @success="onLoginSuccess"
+      />
     </v-card>
   </div>
 </template>
@@ -97,11 +146,13 @@ import type { AppUser } from '@/store/auth/types'
 import { Component, Vue } from 'vue-property-decorator'
 import UserConfigDialog from './UserConfigDialog.vue'
 import ApiKeyDialog from './ApiKeyDialog.vue'
+import UserLoginDialog from './UserLoginDialog.vue'
 
 @Component({
   components: {
     UserConfigDialog,
-    ApiKeyDialog
+    ApiKeyDialog,
+    UserLoginDialog
   }
 })
 export default class AuthSettings extends Vue {
@@ -116,6 +167,11 @@ export default class AuthSettings extends Vue {
 
   apiKeyDialogState: any = {
     open: false
+  }
+
+  loginDialogState = {
+    open: false,
+    username: ''
   }
 
   get users (): AppUser[] {
@@ -148,37 +204,56 @@ export default class AuthSettings extends Vue {
     this.apiKeyDialogState.open = true
   }
 
-  async handleRemoveUser(user: AppUser) {
-  try {
+  async handleRemoveUser (user: AppUser) {
     const result = await this.$confirm(
       this.$t('app.general.simple_form.msg.confirm_remove_user', { username: user.username }).toString(),
       { title: this.$tc('app.general.label.confirm'), color: 'card-heading', icon: '$error' }
-    );
+    )
 
     if (result) {
-      await this.$store.dispatch('auth/removeUser', user);
-      console.log('Silinen kullanıcı:', user); // Konsola silinen kullanıcıyı yazdır
+      this.$store.dispatch('auth/removeUser', user)
     }
-  } catch (error) {
-    console.error('Kullanıcı silinirken hata oluştu:', error);
   }
-}
 
+  async handleSaveUser (user: AppUser) {
+    await this.$store.dispatch('auth/addUser', user)
+    console.log('Added user:', this.users)
+    // Log the added user to console
+    console.log('Added user:', user.username)
+    // We only want to check trust if this is the first user being added.
+    if (this.users.length === 0) this.$store.dispatch('auth/checkTrust')
+  }
 
-  async handleSaveUser(user: AppUser) {
-  try {
-    await this.$store.dispatch('auth/addUser', user);
-    
-    console.log('Yeni eklenen kullanıcı:', user); // Kullanıcıyı konsola yazdır
+  logAllUsers () {
+    console.log('All users:', this.users)
+  }
 
-    // Eğer eklenen ilk kullanıcıysa, güven kontrolü yap
-    if (this.users.length === 0) {
-      await this.$store.dispatch('auth/checkTrust');
+  async switchToUser (user: AppUser) {
+    // Önce login dialogunu aç
+    this.loginDialogState = {
+      open: true,
+      username: user.username
     }
-  } catch (error) {
-    console.error('Kullanıcı eklenirken hata oluştu:', error);
   }
-}
 
+  async onLoginSuccess () {
+    // Login başarılı olduğunda bildirim göster
+    this.$store.dispatch('notifications/pushNotification', {
+      title: this.$tc('app.general.label.success'),
+      text: `${this.loginDialogState.username} set as current user`,
+      type: 'success'
+    })
+  }
+
+  logCurrentUser () {
+    const currentUser = this.$store.state.auth.currentUser
+    console.log('Mevcut Kullanıcı:', {
+      username: currentUser?.username,
+      source: currentUser?.source,
+      isCurrentUser: true,
+      created: currentUser?.created,
+      permissions: currentUser?.permissions
+    })
+  }
 }
 </script>

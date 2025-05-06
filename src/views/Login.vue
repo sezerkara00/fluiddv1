@@ -10,6 +10,32 @@
       lg="3"
       xl="2"
     >
+      <!-- Kullanıcı Seçme Bölümü -->
+      <div v-if="users.length > 0" class="text-center mb-6">
+        <v-select
+          v-model="selectedUser"
+          :items="users"
+          item-text="username"
+          item-value="username"
+          label="Kullanıcı Seç"
+          filled
+          dense
+          hide-details="auto"
+          class="mb-4"
+        />
+        <app-btn
+          block
+          large
+          color="primary"
+          :disabled="!selectedUser"
+          @click="switchToUser"
+        >
+          Kullanıcı Değiştir
+        </app-btn>
+      </div>
+
+      <v-divider v-if="users.length > 0" class="my-4" />
+
       <v-form
         @submit.prevent="handleLogin"
       >
@@ -99,10 +125,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { appInit } from '@/init'
 import { consola } from 'consola'
 import type { InstanceConfig } from '@/store/config/types'
+import type { AppUser } from '@/store/auth/types'
 
 @Component({})
 export default class Login extends Vue {
@@ -112,6 +139,32 @@ export default class Login extends Vue {
   loading = false
   source = 'moonraker'
   availableSources = [this.source]
+  selectedUser = ''
+
+  get users (): AppUser[] {
+    return this.$store.state.auth.users.filter((user: AppUser) =>
+      user.username !== '_TRUSTED_USER_' &&
+      user.username !== this.$store.state.auth.currentUser?.username
+    )
+  }
+
+  async switchToUser () {
+    if (this.selectedUser) {
+      this.username = this.selectedUser
+      // Password alanına fokuslan
+      const passwordField = this.$el.querySelector('input[type="password"]') as HTMLInputElement
+      if (passwordField) {
+        passwordField.focus()
+      }
+    }
+  }
+
+  @Watch('selectedUser')
+  onSelectedUserChange (newValue: string) {
+    if (newValue) {
+      this.username = newValue
+    }
+  }
 
   async mounted () {
     const authInfo = await this.$store.dispatch('auth/getAuthInfo')

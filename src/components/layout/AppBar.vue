@@ -67,6 +67,23 @@
             </template>
           </span>
         </v-tooltip>
+
+        <v-tooltip bottom>
+          <template #activator="{ on, attrs }">
+            <app-btn
+              v-bind="attrs"
+              class="mx-1"
+              color=""
+              v-on="on"
+              @click="logCurrentUser"
+            >
+              <v-icon>
+                $account
+              </v-icon>
+            </app-btn>
+          </template>
+          <span>Mevcut Kullanıcı Bilgileri</span>
+        </v-tooltip>
       </div>
 
       <!-- <div v-if="socketConnected && authenticated && showUploadAndPrint">
@@ -172,6 +189,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
+// import router from '@/router'
 import UserPasswordDialog from '@/components/settings/auth/UserPasswordDialog.vue'
 import PendingChangesDialog from '@/components/settings/PendingChangesDialog.vue'
 import AppSaveConfigAndRestartBtn from './AppSaveConfigAndRestartBtn.vue'
@@ -415,6 +433,24 @@ export default class AppBar extends Mixins(StateMixin, ServicesMixin, FilesMixin
     }
 
     this.sendGcode('SAVE_CONFIG', this.$waits.onSaveConfig)
+  }
+
+  logCurrentUser () {
+    const currentUser = this.$store.state.auth.currentUser
+
+    // if (currentUser?.username === '_TRUSTED_USER_') {
+    //   this.$store.dispatch('auth/logout')
+    //   router.push({ name: 'login' })
+    //   return
+    // }
+
+    console.log('Mevcut Kullanıcı:', {
+      username: currentUser?.username,
+      source: currentUser?.source,
+      isCurrentUser: true,
+      created: currentUser?.created,
+      permissions: currentUser?.permissions
+    })
   }
 }
 </script>
